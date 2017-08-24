@@ -1,0 +1,25 @@
+<a ng-href="#/emps/create" class="btn btn-danger">Create</a>
+
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th style="width:15%;">#</th>
+    <th>nameB</th>
+    <th>firstname</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  <tr ng-repeat="emp in emps">
+    <td>{{emp.id}}</td>
+    <td>{{emp.name}}</td>
+    <td>{{emp.firstname}}</td>
+    <td>
+      <a ng-href="#/emps/edit/{{emp.id}}">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+      </a>
+
+    </td>
+  </tr>
+</tbody>
+</table>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="angularTp4App">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script >
+    var myApp = angular.module('angularTp4App',[]);
+
+    myApp.service('sendName',['$rootScope','$log',function($rootScope,$log){
+      // not private donc utilisation du this
+      this.nameMessage = function(msg){
+        $rootScope.$broadcast('nameMessage',msg);
+        $log.info(msg);
+      }
+    }])
+
+    myApp.controller('Ctrl1',['$scope','$rootScope','$log','sendName',function($scope,$rootScope,$log,sendName){
+      $scope.name = "toto";
+
+      $scope.copyName = function(){
+        var msg =  {name:$scope.name};
+        sendName.nameMessage(msg);
+
+      };
+
+    }]);
+
+    myApp.controller('Ctrl2',['$scope',function($scope){
+      $scope.theName="";
+      $scope.$on('nameMessage',function(event,args){
+        $scope.theName = args.name;
+      })
+    }]);
+
+  </script>
+
+
+
+</head>
+<body>
+  <div class="panel" ng-controller="Ctrl1">
+    <h4>Ctrl 1</h4>
+    <input type="text" ng-model='name'><br/>
+    <button ng-click="copyName()" class="btn btn-primary">Go</button>
+  </div>
+  <div class="panel" ng-controller="Ctrl2">
+    <h4>Ctrl 2</h4>
+    <span>{{theName}}</span>
+  </div>
+</body>
+</html>

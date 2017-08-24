@@ -1,0 +1,36 @@
+<form name="empsForm" class="well form-horizontal" ng-submit="create()" novalidate>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Name:</label>
+    <div class="col-sm-6">
+      <input type="text" name="name" class="form-control" placeholder="saisir" ng-model="emp.name" required>
+
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">FirstName:</label>
+    <div class="col-sm-6">
+      <input type="text" name="firstname" class="form-control" placeholder="Saisir" ng-model="emp.firstname" required>
+
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label">email:</label>
+    <div class="col-sm-6">
+      <input type="email" name="email" class="form-control" placeholder="saisir" ng-model="emp.email" required>
+
+    </div>
+  </div>
+
+  <div ng-show="empsForm.email.$error.required && empsForm.$dirty" class="alert alert-danger">Email requis </div>
+  <div></div>
+
+  <button type="submit" value="create" class="btn btn-primary" ng-disabled="empsForm.$invalid">Create</button>
+
+</form>
+
+<pre>
+  {{emp|json}}
+  {{empsForm|json}}
+</pre>
